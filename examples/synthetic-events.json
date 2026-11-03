@@ -1,0 +1,132 @@
+{
+  "fixture_type": "synthetic_only_not_real_events",
+  "events": [
+    {
+      "event_id": "synthetic:match-100",
+      "title": "Beispielstadt Falcons gegen Nordpark Bears",
+      "sport": "Basketball",
+      "participants": [
+        "Beispielstadt Falcons",
+        "Nordpark Bears"
+      ],
+      "start_datetime": null,
+      "timezone": "Europe/Berlin",
+      "venue": {
+        "name": "Nordparkhalle",
+        "address": null,
+        "city": "Beispielstadt"
+      },
+      "event_status": "scheduled",
+      "verification_status": "conflicting",
+      "checked_at": "2026-11-03T09:20:00Z",
+      "review_required": true,
+      "sources": [
+        {
+          "source_id": "s1",
+          "url": "https://example.org/federation/basketball/match-100",
+          "publisher": "Fiktiver Basketballverband",
+          "retrieved_at": "2026-11-03T09:00:00Z"
+        },
+        {
+          "source_id": "s2",
+          "url": "https://example.org/club/basketball/match-100",
+          "publisher": "Fiktive Vereinsseite",
+          "retrieved_at": "2026-11-03T09:05:00Z"
+        }
+      ],
+      "evidence": [
+        {
+          "field": "/title",
+          "source_id": "s1",
+          "value": "Beispielstadt Falcons gegen Nordpark Bears",
+          "quote": "Beispielstadt Falcons gegen Nordpark Bears"
+        },
+        {
+          "field": "/start_datetime",
+          "source_id": "s1",
+          "value": "2026-11-07T15:00:00+01:00",
+          "quote": "Samstag, 07.11.2026, 15:00 Uhr (MEZ)"
+        },
+        {
+          "field": "/start_datetime",
+          "source_id": "s2",
+          "value": "2026-11-07T16:00:00+01:00",
+          "quote": "Samstag, 07.11.2026, 16:00 Uhr (MEZ)"
+        },
+        {
+          "field": "/venue/name",
+          "source_id": "s1",
+          "value": "Nordparkhalle",
+          "quote": "Nordparkhalle"
+        },
+        {
+          "field": "/event_status",
+          "source_id": "s1",
+          "value": "scheduled",
+          "quote": "Das Spiel ist angesetzt."
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "/start_datetime",
+          "candidates": [
+            {
+              "source_id": "s1",
+              "value": "2026-11-07T15:00:00+01:00"
+            },
+            {
+              "source_id": "s2",
+              "value": "2026-11-07T16:00:00+01:00"
+            }
+          ],
+          "note": "Quellen nennen unterschiedliche Anstoßzeiten; keine Zeit auswählen."
+        }
+      ]
+    },
+    {
+      "event_id": "synthetic:match-200",
+      "title": "SV Beispielstadt II gegen FC Süd",
+      "sport": "Fußball",
+      "participants": [
+        "SV Beispielstadt II",
+        "FC Süd"
+      ],
+      "start_datetime": "2026-11-08T11:00:00+01:00",
+      "timezone": "Europe/Berlin",
+      "venue": null,
+      "event_status": "scheduled",
+      "verification_status": "source_supported",
+      "checked_at": "2026-11-03T09:20:00Z",
+      "review_required": true,
+      "sources": [
+        {
+          "source_id": "s3",
+          "url": "https://example.org/federation/football/match-200",
+          "publisher": "Fiktiver Fußballverband",
+          "retrieved_at": "2026-11-03T09:10:00Z"
+        }
+      ],
+      "evidence": [
+        {
+          "field": "/title",
+          "source_id": "s3",
+          "value": "SV Beispielstadt II gegen FC Süd",
+          "quote": "SV Beispielstadt II gegen FC Süd"
+        },
+        {
+          "field": "/start_datetime",
+          "source_id": "s3",
+          "value": "2026-11-08T11:00:00+01:00",
+          "quote": "Sonntag, 08.11.2026, 11:00 Uhr (MEZ)"
+        },
+        {
+          "field": "/event_status",
+          "source_id": "s3",
+          "value": "scheduled",
+          "quote": "Das Spiel ist angesetzt."
+        }
+      ],
+      "conflicts": []
+    }
+  ]
+}

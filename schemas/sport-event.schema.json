@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/provie/sporthelix-ai-playbook/blob/main/schemas/sport-event.schema.json",
+  "title": "Sporthelix evidence-backed sport event",
+  "description": "An event sourced from real or synthetic documents. Schema validity does not establish factual accuracy or event freshness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "title",
+    "sport",
+    "participants",
+    "start_datetime",
+    "timezone",
+    "venue",
+    "event_status",
+    "verification_status",
+    "checked_at",
+    "review_required",
+    "sources",
+    "evidence",
+    "conflicts"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sport": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "start_datetime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Explicit timezone offset required for known instants. Null when missing or unresolved conflict."
+    },
+    "timezone": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "IANA timezone such as Europe/Berlin, where supported by location/timezone evidence."
+    },
+    "venue": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "address",
+            "city"
+          ],
+          "properties": {
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "address": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "city": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "event_status": {
+      "enum": [
+        "scheduled",
+        "postponed",
+        "cancelled",
+        "completed",
+        "unknown"
+      ]
+    },
+    "verification_status": {
+      "enum": [
+        "source_supported",
+        "conflicting",
+        "unverified"
+      ],
+      "description": "Source-supported means the source stated the information; not independently confirmed event occurrence."
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_required": {
+      "type": "boolean"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "url",
+          "publisher",
+          "retrieved_at"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "publisher": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "source_id",
+          "value",
+          "quote"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "candidates",
+          "note"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "value"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

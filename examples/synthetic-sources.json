@@ -1,0 +1,26 @@
+{
+  "fixture_type": "synthetic_only_not_real_events",
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://example.org/federation/basketball/match-100",
+      "publisher": "Fiktiver Basketballverband",
+      "retrieved_at": "2026-11-03T09:00:00Z",
+      "raw_text": "Beispielstadt Falcons gegen Nordpark Bears – Samstag, 07.11.2026, 15:00 Uhr (MEZ), Nordparkhalle. Das Spiel ist angesetzt."
+    },
+    {
+      "source_id": "s2",
+      "url": "https://example.org/club/basketball/match-100",
+      "publisher": "Fiktive Vereinsseite",
+      "retrieved_at": "2026-11-03T09:05:00Z",
+      "raw_text": "Beispielstadt Falcons vs. Nordpark Bears | Samstag, 07.11.2026, 16:00 Uhr (MEZ) | Nordparkhalle. Das Spiel ist angesetzt."
+    },
+    {
+      "source_id": "s3",
+      "url": "https://example.org/federation/football/match-200",
+      "publisher": "Fiktiver Fußballverband",
+      "retrieved_at": "2026-11-03T09:10:00Z",
+      "raw_text": "SV Beispielstadt II gegen FC Süd: Sonntag, 08.11.2026, 11:00 Uhr (MEZ). Spielort folgt. Das Spiel ist angesetzt."
+    }
+  ]
+}
