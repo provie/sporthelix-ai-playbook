@@ -1,6 +1,8 @@
 # Codex / Claude Code: Evidence-first Event Pipeline
 
-**Vorlage für einen Coding-Agent-Arbeitsauftrag** – keine Behauptung über den produktiven Implementierungsstand von Sporthelix. Vor Nutzung an Stack, Datenquellen, Architektur und vorhandene Tests anpassen.
+**Language:** **English** · [Deutsch](codex-implementation.de.md) · [Home](../README.md)
+
+**Reusable coding-agent task template** — this does not describe or guarantee the production state of Sporthelix. Adapt it to your actual stack, approved data sources, architecture, and existing tests.
 
 ## Copy/Paste-Agent-Instructions
 

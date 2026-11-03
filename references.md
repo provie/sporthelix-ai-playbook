@@ -1,29 +1,31 @@
-# Quellen und weiterführende Literatur
+# References and further reading
 
-Diese Liste enthält ausgewählte Quellen und erklärt **wofür** sie praktisch nützlich sind. Keine einzelne Quelle beweist, dass ein Prompt Halluzinationen vollständig verhindert.
+**Language:** **English** · [Deutsch](references.de.md) · [Home](README.md)
 
-## Prompting, Grounding, Structured Outputs
+Selected references with an explanation of **how to use them**. None of these resources guarantees that a prompt will eliminate hallucinations.
 
-1. **Anthropic – Reduce hallucinations**: [Dokumentation](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Praktisch: Unsicherheit explizit zulassen, wörtliche Textbelege verlangen und Aussagen anhand von Zitaten prüfen.
-2. **OpenAI – Structured Outputs**: [Dokumentation](https://developers.openai.com/api/docs/guides/structured-outputs). Praktisch: Datentypen und Ausgabestruktur verlässlich erzwingen. **Grenze:** Schemavalidität belegt keine Tatsachen.
-3. **Anthropic – Building effective agents** (19.12.2024): [Artikel](https://www.anthropic.com/research/building-effective-agents). Praktisch: Einfache und testbare Workflows bevorzugen; nur bei konkretem Nutzen agentische Komplexität einführen. Manche Tooling-Details sind inzwischen älter.
+## Grounding, prompts, and structured outputs
 
-## Web-Information-Extraction und Datenqualität
+1. **Anthropic — Reduce hallucinations:** [Docs](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). **Try:** allow uncertainty, request short verbatim quotes, and cross-check claims against the quoted text.
+2. **OpenAI — Structured Outputs:** [Docs](https://developers.openai.com/api/docs/guides/structured-outputs). **Try:** apply types and structure to model output. **Caution:** JSON that matches a schema may still describe an invented event.
+3. **Anthropic — Building effective agents** (December 2024): [Engineering article](https://www.anthropic.com/research/building-effective-agents). **Try:** keep workflows simple and testable; add agentic planning only when it solves a measured problem. Some tool-related examples may have evolved.
 
-4. **Yang et al. – LiveWeb-IE: A Benchmark For Online Web Information Extraction** (ICLR 2026): [Paper auf arXiv](https://arxiv.org/abs/2603.13773). Forschung zu Extraktion von realen, sich verändernden Websites. Das Paper stellt einen Benchmark und ein agentisches Verfahren vor; daraus folgt **keine** Garantie für realistische Event-Abdeckung.
-5. **W3C PROV-O – Provenance Ontology** (2013): [W3C Recommendation](https://www.w3.org/TR/prov-o/). Praktisch: Herkunft, Ableitungen und Verarbeitungsschritte von Datensätzen nachvollziehbar modellieren.
+## Web information extraction and data provenance
 
-## Sportdaten und Event-Modelle
+4. **LiveWeb-IE: A Benchmark for Online Web Information Extraction** (ICLR 2026): [arXiv paper](https://arxiv.org/abs/2603.13773). **Learn:** what makes extracting information from changing, live websites difficult. **Caution:** benchmark research does not establish completeness of real-world sports listings.
+5. **W3C PROV-O — Provenance Ontology** (2013): [W3C Recommendation](https://www.w3.org/TR/prov-o/). **Learn:** how to represent the origins and derivation of information.
 
-6. **Schema.org – SportsEvent**: [Typdefinition](https://schema.org/SportsEvent). Praktisch: Semantik von Sportevents, Sportarten, Teilnehmern, Teams und Zeitangaben verstehen.
-7. **OpenActive – Modelling Opportunity Data 2.1, Editor's Draft** (10.09.2026): [Entwurf](https://openactive.io/modelling-opportunity-data/EditorsDraft/). Praktisch: Datenmodell für die **Teilnahme** an sportlichen Aktivitäten, Sessions, Anlagen und Buchungsmöglichkeiten. **Grenze:** Zuschauer-Sportevents und Spielpläne sind nicht vollständig durch den primären Anwendungsfall des Modells abgedeckt.
+## Event and sports data standards
 
-## Was bedeutet das für einen konkreten Prompt?
+6. **Schema.org — SportsEvent:** [Type reference](https://schema.org/SportsEvent). **Learn:** common terminology for sports events, participants, and related metadata.
+7. **OpenActive — Modelling Opportunity Data 2.1, Editor's Draft** (September 2026): [Draft specification](https://openactive.io/modelling-opportunity-data/EditorsDraft/). **Learn:** how to model opportunities to **participate** in sports activities, sessions, venues and bookings. **Caution:** spectator fixtures are not the central use case.
 
-- **Textbeleg und `null`:** Anthropic Grounding/Unsicherheit.
-- **Schema und Felder:** OpenAI Structured Outputs sowie diese Repo-Schema-Datei.
-- **Discovery → Extraction → Validation:** Einfache Workflow-Zerlegung, inspiriert durch Agent-Engineering-Praxis.
-- **Quelle/Abrufzeit/Änderung:** Provenance-Ideen und dynamische Web-Information-Extraction.
-- **Sportliche Domänenbegriffe:** Schema.org SportsEvent und – für Teilnahmeangebote – OpenActive.
+## Putting the ideas into practice
 
-Die **konkrete Kombination als Sporthelix-Playbook** ist eine praktische Synthese und **kein unverändert aus einem Paper übernommenes oder wissenschaftlich validiertes Verfahren**.
+- **Source quote + explicit null:** grounded answers and uncertainty (Anthropic).
+- **Output shape:** Structured Outputs plus this repository's JSON Schema (OpenAI).
+- **Discovery → extraction → validation:** practical separation of testable workflow stages.
+- **Source, retrieval time and changes:** provenance principles and dynamic web extraction.
+- **Sports-specific fields:** Schema.org SportsEvent; OpenActive for participation opportunities.
+
+**The Sporthelix playbook is an engineering synthesis, not a research-validated method copied directly from any single paper.**
