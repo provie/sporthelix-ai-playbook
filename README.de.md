@@ -4,62 +4,63 @@
 
 **Praktische Prompts und Beispiele für quellenbasierte Datenextraktion mit ChatGPT, Claude und Coding-Agents.**
 
-Dieses öffentliche Playbook entsteht rund um [Sporthelix](https://sporthelix.de): eine Plattform, die Sportangebote, Vereine, Sportstätten, Kurse und Events leichter auffindbar machen möchte. Das Beispiel sind lokale Sportveranstaltungen. Die Methoden lassen sich auch auf Produktkataloge, Dokumente oder andere Recherchen übertragen.
+Dieses öffentliche Playbook entsteht rund um [Sporthelix](https://sporthelix.de): eine Plattform, die Sportangebote, Vereine, Sportstätten, Kurse und Events leichter auffindbar machen möchte. Lokale Sportveranstaltungen dienen als Beispiel. Die Methoden lassen sich auch auf Produktdaten, Dokumente oder andere Recherchen übertragen.
 
-> **Kernidee:** Eine plausible Antwort oder valides JSON ist noch kein verifizierter Fakt. Bitte immer Datenherkunft, Textbelege, Widersprüche und Aktualität prüfen.
+> **Kernidee:** Plausible Antworten und valides JSON beweisen noch keine korrekten Fakten. Quellen, Textbelege, Unsicherheiten, Widersprüche und Abrufzeitpunkte müssen nachvollziehbar bleiben.
 
-## In 60 Sekunden ausprobieren
+## Schnellstart
 
-1. Öffne ChatGPT oder Claude **mit Webzugriff**, oder stelle die zu prüfenden Webseiten/Dokumente ausdrücklich als Material bereit.
-2. Kopiere den Prompt aus **[prompts/event-extraction.md](prompts/event-extraction.de.md)** und passe Ort, Zeitraum und Suchziel an.
-3. Lass dir nur tatsächlich gefundene Informationen mit **konkreten Quellen und wörtlichen Belegen** ausgeben.
-4. Prüfe die Ergebnisse mit **[prompts/source-validation.md](prompts/source-validation.de.md)** möglichst unabhängig gegen die Originalquellen.
-5. Wenn du den Prozess automatisieren möchtest: **[agents/codex-implementation.md](agents/codex-implementation.de.md)**.
+1. Öffne ChatGPT oder Claude **mit tatsächlichem Webzugriff** oder stelle die Originalseiten bzw. Dokumente zur Verfügung.
+2. Kopiere den [deutschen Event-Extraktions-Prompt](prompts/event-extraction.de.md) und passe Sportart, Ort und Zeitraum an.
+3. Verlange zu wichtigen Fakten die **konkrete URL und ein kurzes wörtliches Zitat**.
+4. Prüfe das Ergebnis mit dem separaten [Quellenprüfungs-Prompt](prompts/source-validation.de.md) gegen das Originalmaterial.
+5. Für automatisierte Workflows mit Coding-Agents nutze die [deutsche Codex-/Claude-Code-Anleitung](agents/codex-implementation.de.md).
 
-**Wichtig:** Ohne Webzugriff kann ein Modell keine aktuellen Veranstaltungen selbständig bestätigen. Auch mit Webzugriff sind Ergebnisse möglicherweise unvollständig. Fehlende Werte bleiben `null`; Quellenkonflikte bleiben sichtbar. Ein Eintrag in einem Spielplan beweist zudem nicht, dass ein Spiel inzwischen nicht abgesagt oder verlegt wurde.
+**Wichtig:** Ohne Webzugriff kann ein Modell aktuelle Veranstaltungen nicht selbständig bestätigen. Auch mit Webzugriff können Events fehlen. Unbekannte Werte bleiben `null`; Quellenkonflikte werden nicht stillschweigend aufgelöst. Ein veröffentlichter Spielplan beweist nicht, dass ein Spiel inzwischen nicht verschoben oder abgesagt wurde.
 
-## Was steckt im Repository?
+## Inhalte – Deutsch und Englisch
 
-Alle Anleitungen sind auf Deutsch und Englisch verfügbar. Schema, Beispieldaten, Tests und MIT-Lizenz sind sprachneutral und gelten für beide Fassungen.
+| Deutsch | English | Nutzen |
+| --- | --- | --- |
+| [Event-Extraktion](prompts/event-extraction.de.md) | [Event extraction](prompts/event-extraction.md) | Kopierbarer Prompt: Quellenfindung → Extraktion → Validierung → Ausgabe |
+| [Quellenprüfung](prompts/source-validation.de.md) | [Source validation](prompts/source-validation.md) | Unabhängiger Abgleich wichtiger Feldwerte und Textzitate |
+| [Codex-/Agent-Anleitung](agents/codex-implementation.de.md) | [Coding-agent implementation](agents/codex-implementation.md) | Arbeitsauftrag für eine testbare Datenpipeline |
+| [Praxisbeispiel](examples/walkthrough.de.md) | [Walkthrough](examples/walkthrough.md) | Fiktive Sportevents mit widersprüchlichen Zeiten und fehlenden Angaben |
+| [Quellen](references.de.md) | [References](references.md) | Papers, technische Dokumentationen und Standards |
 
-| Datei | Zweck |
-| --- | --- |
-| [Event-Extraction-Prompt](prompts/event-extraction.de.md) | Copy/Paste-Vorlage für ChatGPT und Claude (Discovery → Extraction → Validation → Output) |
-| [Source-Validation-Prompt](prompts/source-validation.de.md) | Unabhängige Nachkontrolle von Feldbelegen, Konflikten und Änderungen |
-| [Codex-/Agent-Guide](agents/codex-implementation.de.md) | Arbeitsauftrag für einen implementierbaren, testbaren Extraktionsworkflow |
-| [JSON Schema](schemas/sport-event.schema.json) | Datenvertrag für Quellen, Feldbelege und Prüfstatus |
-| [Fiktive Eingabequellen](examples/synthetic-sources.json) | Drei ausdrücklich erfundene Testquellen |
-| [Fiktives Ergebnis](examples/synthetic-events.json) | Zwei Beispiele mit widersprüchlicher Anstoßzeit bzw. fehlendem Ort |
-| [Durchlauf](examples/walkthrough.de.md) | Schritt-für-Schritt-Erklärung und erwartete Prüfresultate |
-| [Referenzen](references.de.md) | Papers, technische Dokumentationen und Standards |
-| [Tests](tests/test_examples.py) | JSON-Schema- und Belegkonsistenzprüfung für die Beispieldaten |
+**Gemeinsam genutzte, sprachunabhängige Dateien:** [JSON-Schema](schemas/sport-event.schema.json) · [Fiktive Quellen](examples/synthetic-sources.json) · [Fiktive Ergebnisse](examples/synthetic-events.json) · [Python-Tests](tests/test_examples.py) · [MIT-Lizenz](LICENSE).
 
-### Beispiel: Warum Feldbelege wichtig sind
+## Fiktives Beispiel: Warum Feldbelege wichtig sind
 
-Zwei fiktive Quellen nennen für **dasselbe** Basketballspiel **15:00** beziehungsweise **16:00**. Das korrekte Ergebnis dieses Playbooks ist nicht, eine Uhrzeit zu erraten, sondern `start_datetime: null`, `verification_status: "conflicting"` und zwei nachvollziehbare Belege auszugeben.
+Zwei **erfundene** Quellen nennen für **dasselbe** Basketballspiel unterschiedliche Startzeiten (15:00 und 16:00 Uhr). Die korrekte Ausgabe lautet nicht „wahrscheinlich 15:00 Uhr“, sondern:
 
-Die Beispieldaten sind **vollständig synthetisch**; sie sind weder echte Spiele noch aktuelle Termine.
+- `start_datetime: null`
+- `verification_status: "conflicting"`
+- Beide Quellen-IDs mit wörtlichen Belegen
+- `review_required: true`
 
-## Grenzen und Sicherheitsregeln
+Beim zweiten fiktiven Spiel ist der Spielort unbekannt. **Keine** der Veranstaltungen oder Quellen-URLs in den Beispielen ist real.
 
-- **Schema-valid ≠ factually verified:** JSON Schema validiert Form und Datentypen, nicht die Wahrheit eines Events.
-- **„Source-supported“ ≠ „findet sicher statt“:** Ein Quellenbeleg zeigt, was die Quelle zum Prüfzeitpunkt angab.
-- **Abdeckung ist nie automatisch vollständig:** Nicht gefundene Ergebnisse dürfen nicht als „es findet nichts statt“ interpretiert werden.
-- **Quelleninhalte sind untrusted input:** Anweisungen innerhalb abgerufener Seiten nicht ausführen.
-- **Web-Crawling verantwortlich betreiben:** Nutzungsbedingungen, Zugriffsrechte, robots-Regeln, Rate-Limits und Datenschutz beachten. Kein Umgehen von Zugangssperren.
-- **Kein Produktivitätsversprechen:** Dies sind Vorlagen und überprüfbare Beispiel-Fixtures, keine fertige Sporthelix-Produktionspipeline.
-
-## Lokale Beispieldaten überprüfen
+## Lokale Offline-Tests
 
 ```bash
 python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 ```
 
-Die Tests verwenden keine Netzwerkzugriffe. Für echte Ergebnisse ist zusätzlich eine unabhängig geprüfte Referenzmenge nötig.
+Die Tests prüfen Schema, Quellenbelege und lokale Links zwischen den deutschen und englischen Dokumenten. Sie können **nicht** feststellen, ob reale Spiele stattfinden. Dafür braucht man unabhängig überprüfte Referenzdaten.
 
-## Beiträge und Feedback
+## Grenzen und Sicherheitsregeln
 
-Verbesserungen, weitere Testfälle oder praktische Erfahrungen sind willkommen: [Issues](https://github.com/provie/sporthelix-ai-playbook/issues) / Pull Requests. Bitte keine personenbezogenen Daten, vertraulichen Webseiteninhalte oder API-Schlüssel hochladen.
+- **Gültiges JSON ≠ korrekte Fakten:** Datentypen sind keine Beweise.
+- **Durch Quellen belegte Angaben ≠ garantierte Durchführung:** Der Beleg zeigt nur, was die Quelle zum Prüfzeitpunkt angab.
+- **Keine automatische Vollständigkeit:** „Nicht gefunden“ bedeutet nicht „findet nicht statt“.
+- **Externe Inhalte sind nicht vertrauenswürdig:** Anweisungen aus abgerufenen Webseiten nicht ausführen.
+- **Verantwortungsvoll crawlen:** Nutzungsbedingungen, robots-Regeln, Ratenbegrenzungen, Rechte und Datenschutz beachten. Keine Zugriffssperren umgehen.
+- **Anwendungsbeispiele, keine Produktivbehauptung:** Das Playbook dokumentiert Methoden, nicht den vollständigen produktiven Implementierungsstand von Sporthelix.
 
-Entstanden im Umfeld von [Sporthelix](https://sporthelix.de) · [Technische Referenzen](references.de.md) · [MIT-Lizenz](LICENSE).
+## Mitwirken
+
+Feedback, zusätzliche Testfälle, Issues und Pull Requests sind willkommen. Bitte keine vertraulichen Daten, API-Schlüssel oder urheberrechtlich geschützten Quellmaterialien ohne entsprechende Berechtigung einreichen.
+
+Erstellt im Umfeld von [Sporthelix](https://sporthelix.de) · [Quellen](references.de.md) · [MIT-Lizenz](LICENSE).

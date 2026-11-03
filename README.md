@@ -16,7 +16,7 @@ This public playbook grew out of [Sporthelix](https://sporthelix.de), a platform
 4. Validate the result with the separate [source-validation prompt](prompts/source-validation.md) against the original material.
 5. For automated processing with coding agents, use the [Codex / Claude Code implementation guide](agents/codex-implementation.md).
 
-**Important:** A model without web access cannot confirm up-to-date events. A model with web access can still miss events. Unavailable information must stay `null`; source conflicts must remain visible. A published fixture does not guarantee that the game has not been postponed or cancelled.
+**Important:** A model without web access cannot confirm up-to-date events. A model with web access can still miss events. Unavailable information must stay `null`; source conflicts must remain visible. A listing in a published schedule does not guarantee that the game has not been postponed or cancelled.
 
 ## Contents
 

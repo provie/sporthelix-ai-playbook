@@ -1,6 +1,6 @@
 **Sprache:** [English](walkthrough.md) · **Deutsch** · [Startseite](../README.de.md)
 
-# Walkthrough: Fiktive Sportevents mit widersprüchlichen Quellen
+# Praxisbeispiel: Fiktive Sportevents mit widersprüchlichen Quellen
 
 **Achtung: Keine echten Veranstaltungen.** Alle Teams, Termine, Veranstaltungsorte und Quellen unter `example.org` sind explizit fiktive Testdaten. Bitte nicht als aktuelle Spielpläne verwenden.
 

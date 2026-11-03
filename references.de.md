@@ -1,6 +1,6 @@
-**Sprache:** [English](references.md) · **Deutsch** · [Startseite](README.de.md)
-
 # Quellen und weiterführende Literatur
+
+**Sprache:** [English](references.md) · **Deutsch** (diese Seite) · [Startseite](README.de.md)
 
 Diese Liste enthält ausgewählte Quellen und erklärt **wofür** sie praktisch nützlich sind. Keine einzelne Quelle beweist, dass ein Prompt Halluzinationen vollständig verhindert.
 
